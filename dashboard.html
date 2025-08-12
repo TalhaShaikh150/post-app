@@ -1,11 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareSphere - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-  
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-globe"></i>
+            <span>ShareSphere</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-friends"></i>
+                <span>Friends</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                <span>Messages</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        
+        <div class="user-profile">
+            <!-- <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-image">
+            <div class="profile-info">
+                <div class="profile-name">John Doe</div>
+                <div class="profile-email">john@example.com</div>
+            </div> -->
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+<button class="logout-btn" title="Logout" aria-label="Logout">
+    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+    <span class="logout-text">Logout</span>
+</button>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="header">
+            <h1 class="page-title">Dashboard</h1>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+        
+        <!-- Create Post -->
+        <div class="create-post">
+            <textarea class="post-input" placeholder="What's on your mind?"></textarea>
+            <div class="post-actions">
+                <div class="media-buttons">
+                    <button class="media-btn" title="Add photo">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="media-btn" title="Add video">
+                        <i class="fas fa-video"></i>
+                    </button>
+                    <button class="media-btn" title="Add location">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                </div>
+                <button class="post-btn">Post</button>
+            </div>
+        </div>
+        
+        <!-- Posts Feed -->
+        <div class="posts-feed">
+            <!-- Post 1 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="post-user-image">
+                    <div class="post-user-info">
+                        <div class="post-user-name">Sarah Johnson</div>
+                        <div class="post-time">2 hours ago</div>
+                    </div>
+                    <div class="post-menu">
+                        <button class="post-menu-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="post-menu-dropdown">
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-trash"></i>
+                                <span>Delete Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-share"></i>
+                                <span>Share Post</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Just visited this amazing place! The views were breathtaking and the experience was unforgettable. Can't wait to go back again soon!
+                </div>
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Post image" class="post-image">
+                <div class="post-actions">
+                    <a href="#" class="post-action">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Post 2 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="User" class="post-user-image">
+                    <div class="post-user-info">
+                        <div class="post-user-name">Michael Chen</div>
+                        <div class="post-time">5 hours ago</div>
+                    </div>
+                    <div class="post-menu">
+                        <button class="post-menu-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="post-menu-dropdown">
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-trash"></i>
+                                <span>Delete Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-share"></i>
+                                <span>Share Post</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Just finished reading this incredible book! Highly recommend to anyone interested in personal development and growth mindset.
+                </div>
+                <div class="post-actions">
+                    <a href="#" class="post-action">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Post 3 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" class="post-user-image">
+                    <div class="post-user-info">
+                        <div class="post-user-name">Emma Wilson</div>
+                        <div class="post-time">1 day ago</div>
+                    </div>
+                    <div class="post-menu">
+                        <button class="post-menu-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="post-menu-dropdown">
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-trash"></i>
+                                <span>Delete Post</span>
+                            </a>
+                            <a href="#" class="post-menu-item">
+                                <i class="fas fa-share"></i>
+                                <span>Share Post</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Celebrating my 1 year work anniversary at TechCorp! Grateful for all the opportunities and amazing colleagues I've met along the way.
+                </div>
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Post image" class="post-image">
+                <div class="post-actions">
+                    <a href="#" class="post-action">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scripts/dashboard.js">
+     
+    </script>
 </body>
 </html>
