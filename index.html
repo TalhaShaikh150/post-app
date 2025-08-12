@@ -12,321 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      :root {
-        --primary: #6366f1;
-        --primary-dark: #4f46e5;
-        --light: #f8fafc;
-        --dark: #1e293b;
-        --gray: #94a3b8;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        color: var(--dark);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        background-color: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        min-height: 600px;
-      }
-
-      .hero-image {
-        flex: 1;
-        background: url("https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80")
-          center/cover no-repeat;
-        position: relative;
-        display: none;
-      }
-
-      .hero-image::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          rgba(99, 102, 241, 0.8) 0%,
-          rgba(79, 70, 229, 0.8) 100%
-        );
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        padding: 2rem;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-      }
-
-      .hero-content p {
-        opacity: 0.9;
-        margin-bottom: 2rem;
-      }
-
-      .auth-container {
-        flex: 1;
-        padding: 3rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--primary-dark);
-        margin-bottom: 2rem;
-        justify-content: center;
-      }
-
-      .logo i {
-        font-size: 1.8rem;
-      }
-
-      .tabs {
-        display: flex;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid #e2e8f0;
-      }
-
-      .tab {
-        padding: 0.8rem 1.5rem;
-        cursor: pointer;
-        font-weight: 500;
-        color: var(--gray);
-        position: relative;
-        transition: all 0.3s;
-        text-align: center;
-        flex: 1;
-      }
-
-      .tab.active {
-        color: var(--primary);
-      }
-
-      .tab.active::after {
-        content: "";
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--primary);
-        border-radius: 3px 3px 0 0;
-      }
-
-      .auth-form {
-        display: none;
-        animation: fadeIn 0.5s ease;
-      }
-
-      .auth-form.active {
-        display: block;
-      }
-
-      .form-group {
-        margin-bottom: 1.5rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: var(--dark);
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 0.8rem 1rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        font-family: "Poppins", sans-serif;
-        transition: all 0.3s;
-      }
-
-      .form-control:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-      }
-
-      .btn {
-        width: 100%;
-        padding: 0.8rem;
-        border-radius: 8px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
-        border: none;
-        font-family: "Poppins", sans-serif;
-        font-size: 1rem;
-      }
-
-      .btn-primary {
-        background-color: var(--primary);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-      }
-
-      .divider {
-        display: flex;
-        align-items: center;
-        margin: 1.5rem 0;
-        color: var(--gray);
-        font-size: 0.9rem;
-      }
-
-      .divider::before,
-      .divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background-color: #e2e8f0;
-        margin: 0 1rem;
-      }
-
-      .social-auth {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .social-btn {
-        flex: 1;
-        padding: 0.8rem;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-        background-color: white;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .social-btn:hover {
-        background-color: #f8fafc;
-        transform: translateY(-2px);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-
-      .auth-footer {
-        text-align: center;
-        margin-top: 1.5rem;
-        color: var(--gray);
-        font-size: 0.9rem;
-      }
-
-      .auth-footer a {
-        color: var(--primary);
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .error-message {
-        color: #ef4444;
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
-        display: none;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (min-width: 768px) {
-        .hero-image {
-          display: block;
-        }
-
-        .auth-container {
-          flex: 0 0 50%;
-          max-width: 500px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        body {
-          padding: 1rem;
-        }
-
-        .container {
-          border-radius: 15px;
-        }
-
-        .auth-container {
-          padding: 2rem 1.5rem;
-        }
-
-        .logo {
-          font-size: 1.3rem;
-        }
-
-        .tab {
-          padding: 0.8rem;
-          font-size: 0.9rem;
-        }
-      }
-
-      .form-group{
-        position: relative;
-      }
-      .password-toggle{
-        position: absolute;
-        right: 1rem;
-        top: 70%;
-        transform: translateY(-50%);
-        color: var(--dark);
-        cursor: pointer;
-      }
-      
-    </style>
+<link rel="stylesheet" href="css/index.css">
   </head>
   <body>
     <div class="container">
@@ -334,8 +20,8 @@
         <div class="hero-content">
           <h1>Welcome to ShareSphere</h1>
           <p>
-            Share your thoughts, moments, and ideas with the world. Join our
-            community of creators and thinkers.
+            Create, share, and explore posts from people around the world. Start
+            expressing yourself today.
           </p>
         </div>
       </div>
@@ -359,8 +45,7 @@
               type="email"
               id="login-email"
               class="form-control"
-                            placeholder="Enter Your Email"
-
+              placeholder="Enter Your Email"
               required
             />
             <div class="error-message" id="login-email-error"></div>
@@ -372,11 +57,10 @@
               type="password"
               id="login-password"
               class="form-control password-field"
-                          placeholder="Enter Your Password"
-
+              placeholder="Enter Your Password"
               required
             />
-          <i class="fas fa-eye password-toggle"></i>
+            <i class="fas fa-eye password-toggle"></i>
             <div class="error-message" id="login-password-error"></div>
           </div>
 
@@ -434,16 +118,14 @@
               type="password"
               id="register-password"
               class="form-control password-field"
-                            placeholder="Enter Your Password"
-
+              placeholder="Enter Your Password"
               required
             />
-                      <i class="fas fa-eye password-toggle"></i>
+            <i class="fas fa-eye password-toggle"></i>
 
             <div class="error-message" id="register-password-error"></div>
           </div>
 
-          
           <button type="submit" class="btn btn-primary">Create Account</button>
 
           <!-- <div class="divider">or</div>
@@ -460,20 +142,16 @@
             </button>
           </div> -->
 
-            <div class="auth-footer">
-              Already have an account?
-              <a href="#" id="switch-to-login">Sign in</a>
-            </div>
+          <div class="auth-footer">
+            Already have an account?
+            <a href="#" id="switch-to-login">Sign in</a>
+          </div>
         </form>
-
       </div>
     </div>
 
-    <!-- Supabase Integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js">
-    
-     
-    </script>
+    <script src="scripts/app.js"></script>
+    <script src="backend/backend.js"></script>
   </body>
 </html>
