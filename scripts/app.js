@@ -2,7 +2,6 @@
 const errorMessage = document.querySelector(".error-message");
 const statusMessage = document.querySelector(".status");
 
-// Tab Switching
 const tabs = document.querySelectorAll(".tab");
 const authForms = document.querySelectorAll(".auth-form");
 
@@ -10,18 +9,16 @@ tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     statusMessage.classList.add("hide");
     errorMessage.classList.add("hide");
-    // Remove active class from all tabs and forms
+
     tabs.forEach((t) => t.classList.remove("active"));
     authForms.forEach((form) => form.classList.remove("active"));
 
-    // Add active class to clicked tab and corresponding form
     tab.classList.add("active");
     const tabName = tab.getAttribute("data-tab");
     document.getElementById(`${tabName}-form`).classList.add("active");
   });
 });
 
-// Switch between login and register links
 document.getElementById("switch-to-register").addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector('.tab[data-tab="register"]').click();
@@ -61,18 +58,26 @@ async function signUp() {
   const emailInput = document.getElementById("register-email");
   const passwordInput = document.getElementById("register-password");
   const fullName = document.getElementById("register-name");
+  const phone = document.getElementById("register-phone");
   const signUpForm = document.getElementById("register-form");
   signUpForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     let email = emailInput.value;
     let password = passwordInput.value;
-    let name = fullName.value;
+    let name = fullName.value
+  .split(" ")
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+  .join(" ");
+
+    
+    let phoneNumber  = phone.value
     const { data, error } = await client.auth.signUp({
       email,
       password,
       options: {
         data: {
           displayName: name,
+          phone:phoneNumber
         },
       },
     });
@@ -87,7 +92,7 @@ async function signUp() {
         emailInput.value = "";
         passwordInput.value = "";
         document.querySelector('.tab[data-tab="login"]').click();
-      }, 1500);
+      }, 1000);
     }
 
     if (error) {

@@ -1,3 +1,12 @@
+//Global Variables
+
+export let userData = JSON.parse(
+  localStorage.getItem("sb-oeuieksflauztarkxvsk-auth-token")
+);
+
+const homeScreen = document.querySelector(".main-content");
+const settingScreen = document.querySelector(".profile-settings");
+
 // Toggle post menu dropdown
 document.querySelectorAll(".post-menu-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
@@ -17,15 +26,6 @@ document.addEventListener("click", () => {
   });
 });
 
-// Logout button functionality
-document.querySelector(".logout-btn").addEventListener("click", () => {
-  if (confirm("Are you sure you want to logout?")) {
-    alert("Logged out successfully!");
-    // In a real app, you would redirect to login page
-    // window.location.href = '/login';
-  }
-});
-
 // Simulate post creation
 document.querySelector(".post-btn").addEventListener("click", () => {
   const postInput = document.querySelector(".post-input");
@@ -37,25 +37,58 @@ document.querySelector(".post-btn").addEventListener("click", () => {
   }
 });
 
-let userData = JSON.parse(
-  localStorage.getItem("sb-oeuieksflauztarkxvsk-auth-token")
-);
 
-function userProfileData() {
+function profileDashboardData() {
   let userName = userData.user.user_metadata.displayName;
   let userEmail = userData.user.user_metadata.email;
   const userProfileContainer = document.querySelector(".user-profile");
-  console.log(userProfileContainer);
-  userProfileContainer.innerHTML = `<img src="assets/profile-placeholder.png" alt="Profile" class="profile-image">
-            <div class="profile-info">
-                <div class="profile-name">${userName}</div>
-                <div class="profile-email">${userEmail}</div>
-            </div>
-            
+  userProfileContainer.innerHTML = `
+  <img src="assets/profile-placeholder.png" alt="Profile" class="profile-image" />
+
+<div class="profile-info">
+  <div class="profile-name">${userName}</div>
+  <div class="profile-email">${userEmail}</div>
+</div>         
               `;
+} 
+
+function switchTab() {
+  const allNavItems = document.querySelectorAll(".nav-item");
+  allNavItems.forEach((element) => {
+    element.addEventListener("click", () => {
+      allNavItems.forEach((c) => {
+        c.classList.remove("active");
+      });
+
+      let settingsTab = element.childNodes[1].classList.contains("fa-cog");
+
+      let homeTab = element.childNodes[1].classList.contains("fa-home");
+
+      if (homeTab) {
+        homeScreen.classList.remove("hide");
+        settingScreen.classList.add("hide");
+      } 
+       if (settingsTab) {
+        settingScreen.classList.remove("hide");
+        homeScreen.classList.add("hide");
+      }
+
+      element.classList.add("active");
+    });
+  });
 }
-document.addEventListener("DOMContentLoaded", ()=>{
-  
-  userProfileData();
-  
-})
+
+function logOut() {
+  const logOutBtn = document.querySelector(".logout-btn");
+  logOutBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+    localStorage.clear();
+  });
+}
+
+//On Page Load
+document.addEventListener("DOMContentLoaded", () => {
+  switchTab();
+profileDashboardData()
+  logOut();
+});

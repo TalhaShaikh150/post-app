@@ -1,0 +1,369 @@
+<div class="profile-settings">
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <h2>Profile Settings</h2>
+    <p>Manage your personal information and preferences</p>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="settings-tabs">
+    <button class="tab-btn active" data-tab="profile">Profile</button>
+    <button class="tab-btn" data-tab="security">Security</button>
+    <button class="tab-btn" data-tab="preferences">Preferences</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content active" id="profile-tab">
+    <!-- Profile Picture Section -->
+    <div class="setting-section">
+      <h3><i class="fas fa-user-circle"></i> Profile Picture</h3>
+      <div class="avatar-upload">
+        <div class="avatar-preview">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Current Profile"
+            id="avatar-preview"
+          />
+        </div>
+        <div class="avatar-actions">
+          <input type="file" id="avatar-upload" accept="image/*" hidden />
+          <button
+            class="btn btn-primary"
+            onclick="document.getElementById('avatar-upload').click()"
+          >
+            <i class="fas fa-upload"></i> Upload New
+          </button>
+          <button class="btn btn-outline">
+            <i class="fas fa-trash"></i> Remove
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Info Section -->
+    <div class="setting-section">
+      <h3><i class="fas fa-id-card"></i> Personal Information</h3>
+      <form class="profile-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input
+              type="text"
+              id="full-name"
+              placeholder="Enter your full name"
+              value="John Doe"
+            />
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Choose a username"
+              value="johndoe"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea
+            id="bio"
+            rows="3"
+            placeholder="Tell something about yourself"
+          >
+Digital designer & photographer</textarea
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact Info Section -->
+    <div class="setting-section">
+      <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+      <form class="profile-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Your email"
+            value="john.doe@example.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="+1 (___) ___-____"
+            value="+1 (234) 567-8910"
+          />
+        </div>
+      </form>
+    </div>
+
+    <!-- Location Section -->
+    <div class="setting-section">
+      <h3><i class="fas fa-globe"></i> Location</h3>
+      <form class="profile-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country">
+              <option value="">Select Country</option>
+              <option value="US" selected>United States</option>
+              <option value="UK">United Kingdom</option>
+              <option value="CA">Canada</option>
+              <option value="AU">Australia</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="timezone">Timezone</label>
+            <select id="timezone">
+              <option value="">Select Timezone</option>
+              <option value="-12">
+                (GMT-12:00) International Date Line West
+              </option>
+              <option value="-5" selected>
+                (GMT-05:00) Eastern Time (US & Canada)
+              </option>
+              <option value="0">(GMT+00:00) London</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-outline">Cancel</button>
+      <button class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <!-- Security Tab (hidden by default) -->
+  <div class="tab-content" id="security-tab">
+    <!-- Security content would go here -->
+  </div>
+
+  <!-- Preferences Tab (hidden by default) -->
+  <div class="tab-content" id="preferences-tab">
+    <!-- Preferences content would go here -->
+  </div>
+</div>
+
+<style>
+  .profile-settings {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .profile-header {
+    margin-bottom: 2rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-header p {
+    color: #666;
+  }
+
+  .settings-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s;
+  }
+
+  .tab-btn.active {
+    color: #4361ee;
+    border-bottom-color: #4361ee;
+  }
+
+  .tab-btn:hover:not(.active) {
+    color: #333;
+    border-bottom-color: #ddd;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .setting-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .setting-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .avatar-upload {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .avatar-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #f0f0f0;
+  }
+
+  .avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: #4361ee;
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #3a56d4;
+  }
+
+  .btn-outline {
+    background: white;
+    border: 1px solid #ddd;
+    color: #555;
+  }
+
+  .btn-outline:hover {
+    background: #f9f9f9;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .avatar-upload {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // Simple tab switching functionality
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active class from all buttons and content
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach((b) => b.classList.remove("active"));
+      document
+        .querySelectorAll(".tab-content")
+        .forEach((c) => c.classList.remove("active"));
+
+      // Add active class to clicked button
+      btn.classList.add("active");
+
+      // Show corresponding content
+      const tabId = btn.getAttribute("data-tab");
+      document.getElementById(`${tabId}-tab`).classList.add("active");
+    });
+  });
+
+  // Avatar preview when new image selected
+  document
+    .getElementById("avatar-upload")
+    .addEventListener("change", function (e) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        document.getElementById("avatar-preview").src = event.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+</script>

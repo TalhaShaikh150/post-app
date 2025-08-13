@@ -4,4 +4,3 @@ const supabaseKey =
 
 const client = supabase.createClient(supabaseUrl, supabaseKey);
 
-console.log(client);
