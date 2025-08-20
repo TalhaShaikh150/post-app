@@ -1,3 +1,6 @@
+import {client} from "../backend/backend.js"
+
+
 //Global Variables
 const errorMessage = document.querySelector(".error-message");
 const statusMessage = document.querySelector(".status");

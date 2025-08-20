@@ -82,12 +82,16 @@
             <button class="media-btn" title="Add photo">
               <i class="fas fa-image"></i>
             </button>
-            <button class="media-btn" title="Add video">
+            <input type="file" id="post-upload-input" hidden>
+            <!-- <button class="media-btn" title="Add video">
               <i class="fas fa-video"></i>
             </button>
             <button class="media-btn" title="Add location">
               <i class="fas fa-map-marker-alt"></i>
-            </button>
+            </button> -->
+            <div>
+              <img src="" class="post-preview" alt="">
+            </div>
           </div>
           <button class="post-btn">Post</button>
         </div>
@@ -96,7 +100,7 @@
       <!-- Posts Feed -->
       <div class="posts-feed">
         <!-- Post 1 -->
-        <div class="post-card">
+        <!-- <div class="post-card">
           <div class="post-header">
             <img
               src="https://randomuser.me/api/portraits/women/44.jpg"
@@ -150,10 +154,10 @@
               <span>Share</span>
             </a>
           </div>
-        </div>
+        </div> -->
 
         <!-- Post 2 -->
-        <div class="post-card">
+        <!-- <div class="post-card">
           <div class="post-header">
             <img
               src="https://randomuser.me/api/portraits/men/22.jpg"
@@ -202,10 +206,10 @@
               <span>Share</span>
             </a>
           </div>
-        </div>
+        </div> -->
 
         <!-- Post 3 -->
-        <div class="post-card">
+        <!-- <div class="post-card">
           <div class="post-header">
             <img
               src="https://randomuser.me/api/portraits/women/68.jpg"
@@ -259,25 +263,22 @@
               <span>Share</span>
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
 
+    <!--Settings-Tab-->
     <div class="profile-settings hide">
-      <!-- Profile Header -->
       <div class="profile-header">
         <h2>Profile Settings</h2>
         <p>Manage your personal information and preferences</p>
       </div>
 
-      <!-- Tabs Navigation -->
       <div class="settings-tabs">
         <button class="tab-btn active" data-tab="profile">Profile</button>
       </div>
 
-      <!-- Tab Contents -->
       <div class="tab-content active" id="profile-tab">
-        <!-- Profile Picture Section -->
         <div class="setting-section">
           <h3><i class="fas fa-user-circle"></i> Profile Picture</h3>
           <div class="avatar-upload">
@@ -290,20 +291,17 @@
             </div>
             <div class="avatar-actions">
               <input type="file" id="avatar-upload" accept="image/*" hidden />
-              <button
-                class="btn btn-primary"
-                onclick="document.getElementById('avatar-upload').click()"
-              >
+              <button class="btn btn-primary profile-upload">
                 <i class="fas fa-upload"></i> Upload New
               </button>
-              <button class="btn btn-outline">
+
+              <button class="btn btn-outline remove-profile hide">
                 <i class="fas fa-trash"></i> Remove
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Personal Info Section -->
         <div class="setting-section">
           <h3><i class="fas fa-id-card"></i> Personal Information</h3>
           <form class="profile-form">
@@ -317,12 +315,12 @@
                 />
               </div>
               <div class="form-group">
-                <label for="username">Username</label>
+                <label for="userid">User ID</label>
                 <input
                   type="text"
-                  id="username"
+                  id="userid"
                   placeholder="Choose a username"
-                  value="johndoe"
+  readonly
                 />
               </div>
             </div>
@@ -333,18 +331,17 @@
                 id="bio"
                 rows="3"
                 placeholder="Tell something about yourself"
-              ></textarea>
+              >Testing</textarea>
             </div>
           </form>
         </div>
 
-        <!-- Contact Info Section -->
         <div class="setting-section">
           <h3><i class="fas fa-envelope"></i> Contact Information</h3>
           <form class="profile-form">
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="Your email" />
+              <input type="email" id="email" class="setting-email" placeholder="Your email" readonly/>
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
@@ -353,58 +350,27 @@
           </form>
         </div>
 
-        <!-- Location Section -->
         <div class="setting-section">
-          <h3><i class="fas fa-globe"></i> Location</h3>
-          <form class="profile-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="country">Country</label>
-                <select id="country">
-                  <option value="">Select Country</option>
-                  <option value="PK" selected>Pakistan</option>
-                  <option value="UK">United Kingdom</option>
-                  <option value="CA">Canada</option>
-                  <option value="AU">Australia</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="city">City</label>
-                <select id="city">
-                  <option value="">Select City</option>
-                  <option value="Karachi" selected>Karachi</option>
-                  <option value="los-angeles">Los Angeles</option>
-                  <option value="london">London</option>
-                  <option value="paris">Paris</option>
-                  <option value="tokyo">Tokyo</option>
-                  <option value="dubai">Dubai</option>
-                  <option value="karachi">Karachi</option>
-                  <option value="sydney">Sydney</option>
-                  <option value="cape-town">Cape Town</option>
-                </select>
-              </div>
-            </div>
-          </form>
+          
         </div>
 
-        <div class="form-actions">
+        <div class="form-actions hide">
           <button class="btn btn-outline">Cancel</button>
-          <button class="btn btn-primary">Save Changes</button>
+          <button class="btn btn-primary save-changes ">Save Changes</button>
         </div>
       </div>
 
-      <!-- Security Tab (hidden by default) -->
-      <div class="tab-content" id="security-tab">
-        <!-- Security content would go here -->
+      <!-- <div class="tab-content" id="security-tab">
+      
       </div>
 
-      <!-- Preferences Tab (hidden by default) -->
       <div class="tab-content" id="preferences-tab">
-        <!-- Preferences content would go here -->
-      </div>
+      </div> -->
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="scripts/dashboard.js" type="module"></script>
     <script src="scripts/settings.js" type="module"></script>
+    <script src="backend/backend.js" type="module"></script>
   </body>
 </html>
