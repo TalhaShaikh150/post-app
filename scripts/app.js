@@ -1,6 +1,6 @@
 import {client} from "../backend/backend.js"
-
-
+import { darkMode } from "./extras.js";
+import { passwordToggle } from "./extras.js";
 //Global Variables
 const errorMessage = document.querySelector(".error-message");
 const statusMessage = document.querySelector(".status");
@@ -32,23 +32,7 @@ document.getElementById("switch-to-login").addEventListener("click", (e) => {
   document.querySelector('.tab[data-tab="login"]').click();
 });
 
-function passwordToggle() {
-  const passwordToggle = document.querySelectorAll(".password-toggle");
 
-  passwordToggle.forEach((element) => {
-    element.addEventListener("click", () => {
-      element.classList.toggle("fa-eye");
-      element.classList.toggle("fa-eye-slash");
-
-      let passwordField = element.previousElementSibling;
-      if (element.classList.contains("fa-eye-slash")) {
-        passwordField.type = "text";
-      } else {
-        passwordField.type = "password";
-      }
-    });
-  });
-}
 
 function addError() {
   errorMessage.classList.remove("hide");
@@ -144,8 +128,10 @@ async function signIn() {
   });
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
   signUp();
   signIn();
+  darkMode()
   passwordToggle();
 });

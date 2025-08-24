@@ -1,28 +1,23 @@
-// ==============================
 // Imports
-// ==============================
 import { client } from "../backend/backend.js";
+import { darkMode } from "./extras.js";
 
-// ==============================
+
 // Global Variables
-// ==============================
 export let userData = JSON.parse(
   localStorage.getItem("sb-oeuieksflauztarkxvsk-auth-token")
 );
+const postPreview = document.querySelector(".post-preview");
 
 let postFile;
-// ==============================
 // DOM Elements
-// ==============================
 const homeScreen = document.querySelector(".main-content");
 const settingScreen = document.querySelector(".profile-settings");
 const uploadPostEl = document.getElementById("post-upload-input");
 const postText = document.querySelector(".post-input");
 const uploadBtn = document.querySelector(".media-btn");
 
-// ==============================
 // UI Helpers
-// ==============================
 
 // Toggle post menu dropdown
 function initPostMenuDropdowns() {
@@ -96,15 +91,11 @@ function logOut() {
   });
 }
 
-// ==============================
-// Post Upload & Database
-// ==============================
 
 // Handle post upload preview
 function uploadPost() {
   uploadBtn.addEventListener("click", () => {
     uploadPostEl.click();
-    const postPreview = document.querySelector(".post-preview");
 
     uploadPostEl.addEventListener("change", async () => {
       postFile = uploadPostEl.files[0];
@@ -114,7 +105,6 @@ function uploadPost() {
   });
 }
 
-// Get public URL for uploaded file
 async function profileSrc() {
   const { data } = client.storage
     .from("snapPost")
@@ -122,17 +112,14 @@ async function profileSrc() {
   return data;
 }
 
-// Upload post to database
 function postToDB() {
   const postBtn = document.querySelector(".post-btn");
-
   postBtn.addEventListener("click", async () => {
     if (!uploadPostEl.value || !postText.value) {
       alert("Please Add Image And Post ");
       return;
     }
 
-    // Save file to Supabase bucket
     const { data: uploadData, error: uploadError } = await client.storage
       .from("snapPost")
       .upload(`public/${postFile.name}`, postFile, {});
@@ -170,7 +157,7 @@ async function fetchPostData() {
 
   if (data) {
     const postFeedContainer = document.querySelector(".posts-feed");
-    postFeedContainer.innerHTML = ""; // 🧹 clear old posts first
+    postFeedContainer.innerHTML = "";
     const postData = data;
     postData.forEach((element) => {
       let postSrc = element.postSrc;
@@ -183,7 +170,6 @@ async function fetchPostData() {
 
 function renderPost(postSrc, postText, userName) {
   const postFeedContainer = document.querySelector(".posts-feed");
-  
   let html = "";
 
   html += `<div class="post-card">
@@ -240,14 +226,31 @@ function renderPost(postSrc, postText, userName) {
             </a>
           </div>
         </div>`;
-
-  postFeedContainer.innerHTML += html;
+        postFeedContainer.innerHTML += html;
+        postPreview.src = "";
+  postText = "";
 }
+
+function getAuth() {
+  let auth = JSON.parse(
+    localStorage.getItem("sb-oeuieksflauztarkxvsk-auth-token")
+  );
+  let pathName = window.location.pathname;
+
+  if (auth) {
+    if (pathName.endsWith("dashboard.html")) {
+    }
+  } else {
+    window.location.href = "index.html";
+  }
+}
+getAuth();
 
 // ==============================
 // Init on Page Load
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {
+  darkMode()
   uploadPost();
   initPostMenuDropdowns();
   postToDB();

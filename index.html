@@ -5,165 +5,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SnapPost - Share Your Posts</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-<link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="hero-image">
-        <div class="hero-content">
-          <h1>Welcome to SnapPost</h1>
-          <p>
-            Create, share, and explore posts from people around the world. Start
-            expressing yourself today.
-          </p>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <a href="#" class="nav-logo">
+        <i class="fas fa-globe"></i>
+        <span>SnapPost</span>
+      </a>
+      <div class="nav-items">
+        <button class="theme-toggle" id="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container">
+        <div class="hero-image">
+          <div class="hero-content">
+            <h1>Connect and Share with SnapPost</h1>
+            <p>
+              Join our community to create, share, and explore posts from people
+              around the world. Express yourself and discover new perspectives.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <i class="fas fa-check-circle"></i> Create beautiful posts with
+                ease
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Share with a global
+                community
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Discover trending content
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="auth-container">
+          <div class="logo">
+            <i class="fas fa-globe"></i>
+            <span>SnapPost</span>
+          </div>
+
+          <div class="tabs">
+            <div class="tab-slider"></div>
+            <div class="tab active" data-tab="login">Sign In</div>
+            <div class="tab" data-tab="register">Sign Up</div>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" class="auth-form active">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                class="form-control"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <div class="password-field-container">
+                <input
+                  type="password"
+                  id="login-password"
+                  class="form-control password-field"
+                  placeholder="Enter your password"
+                  required
+                />
+                <i class="fas fa-eye password-toggle"></i>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign In</button>
+
+            <div class="auth-footer">
+              Don't have an account?
+              <a href="#" id="switch-to-register">Sign up now</a>
+            </div>
+          </form>
+
+          <!-- Register Form -->
+          <form id="register-form" class="auth-form">
+            <div class="form-group">
+              <label for="register-name">Full Name</label>
+              <input
+                type="text"
+                id="register-name"
+                class="form-control"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input
+                type="email"
+                id="register-email"
+                class="form-control"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="register-phone">Phone Number</label>
+              <input
+                type="tel"
+                id="register-phone"
+                class="form-control"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <div class="password-field-container">
+                <input
+                  type="password"
+                  id="register-password"
+                  class="form-control password-field"
+                  placeholder="Create a password"
+                  required
+                />
+                <i class="fas fa-eye password-toggle"></i>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Create Account
+            </button>
+
+            <div class="auth-footer">
+              Already have an account?
+              <a href="#" id="switch-to-login">Sign in</a>
+            </div>
+          </form>
+
+          <div class="status hide">
+            Please check your email to verify your account
+          </div>
+          <div class="error-message hide"></div>
         </div>
       </div>
-
-      <div class="auth-container">
-        <div class="logo">
-          <i class="fas fa-globe"></i>
-          <span>SnapPost</span>
-        </div>
-
-        <div class="tabs">
-          <div class="tab active" data-tab="login">Sign In</div>
-          <div class="tab" data-tab="register">Sign Up</div>
-        </div>
-
-        <!-- Login Form -->
-        <form id="login-form" class="auth-form active">
-          <div class="form-group">
-            <label for="login-email">Email</label>
-            <input
-              type="email"
-              id="login-email"
-              class="form-control"
-              placeholder="Enter Your Email"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="login-password">Password</label>
-            <input
-              type="password"
-              id="login-password"
-              class="form-control password-field"
-              placeholder="Enter Your Password"
-              required
-            />
-            <i class="fas fa-eye password-toggle"></i>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Sign In</button>
-
-          <!--<div class="divider">or</div>
-
-           <div class="social-auth">
-            <button type="button" class="social-btn">
-              <i class="fab fa-google"></i>
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fab fa-github"></i>
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fab fa-twitter"></i>
-            </button>
-          </div> -->
-
-          <div class="auth-footer">
-            Don't have an account?
-            <a href="#" id="switch-to-register">Sign up</a>
-          </div>
-        </form>
-
-        <!-- Register Form -->
-        <form id="register-form" class="auth-form">
-          <div class="form-group">
-            <label for="register-name">Full Name</label>
-            <input
-              type="text"
-              id="register-name"
-              class="form-control"
-              placeholder="Full Name"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="register-email">Email</label>
-            <input
-              type="email"
-              id="register-email"
-              class="form-control"
-              placeholder="Enter Your Email"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="register-phone">Phone</label>
-            <input
-              type="tel"
-              id="register-phone"
-              class="form-control"
-              placeholder="Enter Your Phone"
-              required
-            />
-          </div>
-          
-
-          <div class="form-group">
-            <label for="register-password">Password</label>
-            <input
-              type="password"
-              id="register-password"
-              class="form-control password-field"
-              placeholder="Enter Your Password"
-              required
-            />
-            <i class="fas fa-eye password-toggle"></i>
-
-          </div>
-
-          <button type="submit" class="btn btn-primary">Create Account</button>
-
-          <!-- <div class="divider">or</div>
-
-          <div class="social-auth">
-            <button type="button" class="social-btn">
-              <i class="fab fa-google"></i>
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fab fa-github"></i>
-            </button>
-            <button type="button" class="social-btn">
-              <i class="fab fa-twitter"></i>
-            </button>
-          </div> -->
-
-          <div class="auth-footer">
-            Already have an account?
-            <a href="#" id="switch-to-login">Sign in</a>
-          </div>
-        </form>
-        <div class="status hide">Please Verify Your Email</div>
-        <div class="error-message hide"></div>
-      </div>
-
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2023 SnapPost. All rights reserved.
+        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
+      </p>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="scripts/app.js"type="module"></script>
-    <script src="backend/backend.js" type="module"></script>
+    <script src="scripts/app.js" type="module"></script>
+    <!-- <script src="scripts/da.js" type="module"></script> -->
     
+    <script src="backend/backend.js" type="module"></script>
   </body>
 </html>
