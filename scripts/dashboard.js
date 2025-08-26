@@ -2,12 +2,12 @@
 import { client } from "../backend/backend.js";
 import { darkMode } from "./extras.js";
 
-
 // Global Variables
 export let userData = JSON.parse(
   localStorage.getItem("sb-oeuieksflauztarkxvsk-auth-token")
 );
 const postPreview = document.querySelector(".post-preview");
+dayjs.extend(window.dayjs_plugin_relativeTime);
 
 let postFile;
 // DOM Elements
@@ -46,10 +46,15 @@ function initPostMenuDropdowns() {
 function profileDashboardData() {
   let userName = userData.user.user_metadata.displayName;
   let userEmail = userData.user.user_metadata.email;
-
+  let firstLetter = userName[0];
   const userProfileContainer = document.querySelector(".user-profile");
   userProfileContainer.innerHTML = `
-    <img src="assets/profile-placeholder.png" alt="Profile" class="profile-image" />
+    <img src="assets/profile-placeholder.png" alt="Profile" class="profile-image none" />
+    
+<div class="avatar-container">
+        <div class="profile-avatar">${firstLetter}</div>
+        <div class="status-indicator"></div>
+    </div>
     <div class="profile-info">
       <div class="profile-name">${userName}</div>
       <div class="profile-email">${userEmail}</div>
@@ -87,10 +92,9 @@ function logOut() {
   const logOutBtn = document.querySelector(".logout-btn");
   logOutBtn.addEventListener("click", () => {
     window.location.href = "index.html";
-    localStorage.clear();
+    localStorage.removeItem("sb-oeuieksflauztarkxvsk-auth-token");
   });
 }
-
 
 // Handle post upload preview
 function uploadPost() {
@@ -114,12 +118,27 @@ async function profileSrc() {
 
 function postToDB() {
   const postBtn = document.querySelector(".post-btn");
+  const errorBtn = document.querySelector(".btn-error");
+  let errorTimeout; // store timeout ID outside
+
   postBtn.addEventListener("click", async () => {
+    postBtn.disabled = true;
+
     if (!uploadPostEl.value || !postText.value) {
-      alert("Please Add Image And Post ");
+      errorBtn.classList.remove("none");
+
+      // clear any previous timeout before starting a new one
+      clearTimeout(errorTimeout);
+
+      errorTimeout = setTimeout(() => {
+        errorBtn.classList.add("none");
+        postBtn.disabled = false;
+      }, 1000);
+
       return;
     }
 
+    postBtn.innerHTML = "Uploading....";
     const { data: uploadData, error: uploadError } = await client.storage
       .from("snapPost")
       .upload(`public/${postFile.name}`, postFile, {});
@@ -130,6 +149,10 @@ function postToDB() {
     }
 
     if (uploadData) {
+      postBtn.innerHTML = "Uploaded Successfully";
+      setTimeout(() => {
+        postBtn.innerHTML = "Create Post";
+      }, 300);
       const profile = await profileSrc();
       let profileUrl = profile.publicUrl;
 
@@ -163,71 +186,56 @@ async function fetchPostData() {
       let postSrc = element.postSrc;
       let postText = element.postText;
       let userName = element.userName;
-      renderPost(postSrc, postText, userName);
+      let getTime = element.created_at;
+      let postTime = dayjs(getTime).fromNow();
+
+      console.log();
+
+      renderPost(postSrc, postText, userName, postTime);
     });
   }
 }
 
-function renderPost(postSrc, postText, userName) {
+function renderPost(postSrc, postText, userName, postTime) {
   const postFeedContainer = document.querySelector(".posts-feed");
   let html = "";
 
   html += `<div class="post-card">
-          <div class="post-header">
-            <img
-              src="assets/profile-placeholder.png"
-              alt="User"
-              class="post-user-image"
-            />
-            <div class="post-user-info">
-              <div class="post-user-name">${userName}</div>
-              <div class="post-time">2 hours ago</div>
-            </div>
-            <div class="post-menu">
-              <button class="post-menu-btn">
-                <i class="fas fa-ellipsis-h"></i>
-              </button>
-              <div class="post-menu-dropdown">
-                <a href="#" class="post-menu-item">
-                  <i class="fas fa-edit"></i>
-                  <span>Edit Post</span>
-                </a>
-                <a href="#" class="post-menu-item">
-                  <i class="fas fa-trash"></i>
-                  <span>Delete Post</span>
-                </a>
-                <a href="#" class="post-menu-item">
-                  <i class="fas fa-share"></i>
-                  <span>Share Post</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="post-content">
-            ${postText}
-          </div>
-          <img
-            src="${postSrc}"
-            alt="Post image"
-            class="post-image"
-          />
-          <div class="post-actions">
-            <a href="#" class="post-action">
-              <i class="fas fa-thumbs-up"></i>
-              <span>Like</span>
-            </a>
-            <a href="#" class="post-action">
-              <i class="fas fa-comment"></i>
-              <span>Comment</span>
-            </a>
-            <a href="#" class="post-action">
-              <i class="fas fa-share"></i>
-              <span>Share</span>
-            </a>
-          </div>
-        </div>`;
-        postFeedContainer.innerHTML += html;
-        postPreview.src = "";
+  
+                <div class="post-header">
+                    <img src="assets/profile-placeholder.png" alt="User" class="post-user-image">
+                    <div class="post-user-info">
+                        <div class="post-user-name">${userName}</div>
+                        <div class="post-time">${postTime}</div>
+                    </div>
+                    <div class="post-menu">
+                        <button class="post-menu-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="post-content">
+                    ${postText}
+                </div>
+                <img src="${postSrc}" alt="Mountain view" class="post-image">
+                
+                <div class="post-footer">
+                    <a href="#" class="post-action like-btn">
+                        <i class="far fa-heart"></i>
+                        <span>124</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="far fa-comment"></i>
+                        <span>23</span>
+                    </a>
+                    <a href="#" class="post-action">
+                        <i class="far fa-share-square"></i>
+                        <span>Share</span>
+                    </a>
+                </div>
+            </div>`;
+  postFeedContainer.innerHTML += html;
+  postPreview.src = "";
   postText = "";
 }
 
@@ -250,7 +258,7 @@ getAuth();
 // Init on Page Load
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {
-  darkMode()
+  darkMode();
   uploadPost();
   initPostMenuDropdowns();
   postToDB();

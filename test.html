@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4a6cfa;
+            --secondary-color: #8a94a6;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #333333;
+            --text-light: #6c757d;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-settings {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--card-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-header h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .profile-header p {
+            color: var(--text-light);
+        }
+
+        .settings-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .setting-section {
+            margin-bottom: 32px;
+        }
+
+        .setting-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .avatar-upload {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 108, 250, 0.2);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .avatar-upload {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .avatar-actions {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Settings Tab -->
+    <div class="profile-settings">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <h2>Profile Settings</h2>
+            <p>Manage your personal information and preferences</p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="settings-tabs">
+            <button class="tab-btn active" data-tab="profile">Profile</button>
+            <button class="tab-btn" data-tab="security">Security</button>
+            <button class="tab-btn" data-tab="preferences">Preferences</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content active" id="profile-tab">
+            <!-- Profile Picture Section -->
+            <div class="setting-section">
+                <h3><i class="fas fa-user-circle"></i> Profile Picture</h3>
+                <div class="avatar-upload">
+                    <div class="avatar-preview">
+                        <img
+                            src="https://via.placeholder.com/80"
+                            alt="Current Profile"
+                            id="avatar-preview"
+                        />
+                    </div>
+                    <div class="avatar-actions">
+                        <input type="file" id="avatar-upload" accept="image/*" hidden />
+                        <button class="btn btn-primary" id="avatar-upload-btn">
+                            <i class="fas fa-upload"></i> Upload New
+                        </button>
+                        <button class="btn btn-outline" id="avatar-remove-btn">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Info Section -->
+            <div class="setting-section">
+                <h3><i class="fas fa-id-card"></i> Personal Information</h3>
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input
+                                type="text"
+                                id="full-name"
+                                placeholder="Enter your full name"
+                                value="John Doe"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Choose a username"
+                                value="johndoe"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea
+                            id="bio"
+                            rows="3"
+                            placeholder="Tell something about yourself"
+                        >Hello! I'm John, a software developer passionate about creating amazing user experiences.</textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info Section -->
+            <div class="setting-section">
+                <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Your email" value="john.doe@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="0300-100-203" value="0300-100-203" />
+                    </div>
+                </form>
+            </div>
+
+            <!-- Location Section -->
+            <div class="setting-section">
+                <h3><i class="fas fa-globe"></i> Location</h3>
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country">
+                                <option value="">Select Country</option>
+                                <option value="PK" selected>Pakistan</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <select id="city">
+                                <option value="">Select City</option>
+                                <option value="Karachi" selected>Karachi</option>
+                                <option value="los-angeles">Los Angeles</option>
+                                <option value="london">London</option>
+                                <option value="paris">Paris</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="sydney">Sydney</option>
+                                <option value="cape-town">Cape Town</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-outline" id="cancel-btn">Cancel</button>
+                <button class="btn btn-primary" id="save-btn">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Security Tab -->
+        <div class="tab-content" id="security-tab">
+            <div class="setting-section">
+                <h3><i class="fas fa-lock"></i> Change Password</h3>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password" placeholder="Enter current password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" placeholder="Enter new password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm New Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm new password" />
+                    </div>
+                </form>
+            </div>
+            
+            <div class="setting-section">
+                <h3><i class="fas fa-shield-alt"></i> Two-Factor Authentication</h3>
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label>Status: Disabled</label>
+                        <button class="btn btn-primary">Enable 2FA</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-outline">Cancel</button>
+                <button class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Preferences Tab -->
+        <div class="tab-content" id="preferences-tab">
+            <div class="setting-section">
+                <h3><i class="fas fa-palette"></i> Appearance</h3>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="theme">Theme</label>
+                        <select id="theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="system">System Default</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="setting-section">
+                <h3><i class="fas fa-bell"></i> Notifications</h3>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked />
+                            Email Notifications
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked />
+                            Push Notifications
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" />
+                            SMS Notifications
+                        </label>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-outline">Cancel</button>
+                <button class="btn btn-primary">Save Preferences</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show active tab content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Avatar upload functionality
+            const avatarUploadBtn = document.getElementById('avatar-upload-btn');
+            const avatarUploadInput = document.getElementById('avatar-upload');
+            const avatarPreview = document.getElementById('avatar-preview');
+            const avatarRemoveBtn = document.getElementById('avatar-remove-btn');
+            
+            avatarUploadBtn.addEventListener('click', function() {
+                avatarUploadInput.click();
+            });
+            
+            avatarUploadInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        avatarPreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            avatarRemoveBtn.addEventListener('click', function() {
+                avatarPreview.src = 'https://via.placeholder.com/80';
+            });
+            
+            // Save and cancel buttons
+            const saveBtn = document.getElementById('save-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            
+            saveBtn.addEventListener('click', function() {
+                alert('Settings saved successfully!');
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('Discard all changes?')) {
+                    // In a real app, you would reset the form values here
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

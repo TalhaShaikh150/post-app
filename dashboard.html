@@ -1,103 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Improved Social Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body>
-  <!-- Sidebar Navigation -->
-  <aside class="sidebar">
-    <div class="logo">
-      <i class="fas fa-fire"></i>
-      <span>SocialPlus</span>
-    </div>
-
-    <nav class="nav-menu">
-      <a href="#" class="nav-item active">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-      </a>
-      <a href="#" class="nav-item">
-        <i class="fas fa-compass"></i>
-        <span>Explore</span>
-      </a>
-      <a href="#" class="nav-item">
-        <i class="fas fa-bell"></i>
-        <span>Notifications</span>
-      </a>
-      <a href="#" class="nav-item">
-        <i class="fas fa-envelope"></i>
-        <span>Messages</span>
-      </a>
-      <a href="#" class="nav-item">
-        <i class="fas fa-bookmark"></i>
-        <span>Bookmarks</span>
-      </a>
-      <a href="#" class="nav-item">
-        <i class="fas fa-user"></i>
-        <span>Profile</span>
-      </a>
-    </nav>
-
-    <div class="user-profile">
-      
-    </div>
-    <button class="logout-btn">
-      <i class="fas fa-sign-out-alt"></i>
-    </button>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="header">
-      <h1 class="page-title">Dashboard</h1>
-      <div class="header-actions">
-        <div class="search-bar">
-          <i class="fas fa-search"></i>
-          <input type="text" placeholder="Search...">
-        </div>
-        <button class="theme-toggle" id="theme-toggle">
-          <i class="fas fa-moon"></i>
-        </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Improved Social Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fas fa-fire"></i>
+        <span>SocialPlus</span>
       </div>
-    </div>
 
-    <!-- Create Post -->
-    <div class="create-post">
-      <textarea class="post-input" placeholder="What's on your mind?"></textarea>
-      <div class="post-actions">
-        <div class="media-buttons">
-          <button class="media-btn">
-            <i class="fas fa-image"></i>
-          </button>
-          <input type="file" id="post-upload-input" hidden>
-          <div>
-            <img src="" class="post-preview" alt="">
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-compass"></i>
+          <span>Explore</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-envelope"></i>
+          <span>Messages</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-bookmark"></i>
+          <span>Bookmarks</span>
+        </a>
+        <div class="nav-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </div>
+      </nav>
+
+      <div class="user-profile"></div>
+    <!-- From Uiverse.io by kennyotsu-monochromia --> 
+<button class="Btn logout-btn">
+  <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+  
+  <div class="text">Logout</div>
+</button>
+
+
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="header-actions">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search..." />
           </div>
-          <!-- <button class="media-btn">
+          <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+       
+      </div>
+
+      <!-- Create Post -->
+      <div class="create-post">
+        <textarea
+          class="post-input"
+          placeholder="What's on your mind?"
+        ></textarea>
+        <div class="post-actions">
+          <div class="media-buttons">
+            <button class="media-btn">
+              <i class="fas fa-image"></i>
+            </button>
+            <input type="file" id="post-upload-input" hidden />
+            <div>
+              <img src="" class="post-preview" alt="" />
+            </div>
+            <!-- <button class="media-btn">
             <i class="fas fa-video"></i>
           </button>
           <button class="media-btn">
             <i class="fas fa-map-marker-alt"></i>
           </button> -->
+          </div>
+          <button class="post-btn">Create Post</button>
+        </div> <button
+          class="alert-btn btn-error none"
+          onclick="showAlert('error', 'Error!', 'Something went wrong. Please try again.')"
+        >
+          <i class="fas fa-exclamation-circle"></i>Add Post Caption And Image
+        </button>
+      </div>
+
+      <!-- Posts Feed -->
+      <div class="posts-feed"></div>
+      </main>
+    <!--Settings Tab-->
+    <div class="profile-settings hide">
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <h2>Profile Settings</h2>
+        <p>Manage your personal information and preferences</p>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="settings-tabs">
+        <button class="tab-btn active" data-tab="profile">Profile</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="tab-content active" id="profile-tab">
+        <!-- Profile Picture Section -->
+        <div class="setting-section">
+          <h3><i class="fas fa-user-circle"></i> Profile Picture</h3>
+          <div class="avatar-upload">
+            <div class="avatar-preview">
+              <img
+                src="assets/profile-placeholder.png"
+                alt="Current Profile"
+                id="avatar-preview"
+              />
+            </div>
+            <div class="avatar-actions">
+              <input type="file" id="avatar-upload" accept="image/*" hidden />
+              <button
+                class="btn btn-primary"
+                onclick="document.getElementById('avatar-upload').click()"
+              >
+                <i class="fas fa-upload"></i> Upload New
+              </button>
+              <button class="btn btn-outline">
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
         </div>
-        <button class="post-btn">Post</button>
+
+        <!-- Personal Info Section -->
+        <div class="setting-section">
+          <h3><i class="fas fa-id-card"></i> Personal Information</h3>
+          <form class="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input
+                  type="text"
+                  id="full-name"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Choose a username"
+                  value="johndoe"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea
+                id="bio"
+                rows="3"
+                placeholder="Tell something about yourself"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="setting-section">
+          <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+          <form class="profile-form">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="Your email" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="0300-100-203" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Location Section -->
+        <div class="setting-section">
+          <h3><i class="fas fa-globe"></i> Location</h3>
+          <form class="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country">
+                  <option value="">Select Country</option>
+                  <option value="PK" selected>Pakistan</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="CA">Canada</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <select id="city">
+                  <option value="">Select City</option>
+                  <option value="Karachi" selected>Karachi</option>
+                  <option value="los-angeles">Los Angeles</option>
+                  <option value="london">London</option>
+                  <option value="paris">Paris</option>
+                  <option value="tokyo">Tokyo</option>
+                  <option value="dubai">Dubai</option>
+                  <option value="karachi">Karachi</option>
+                  <option value="sydney">Sydney</option>
+                  <option value="cape-town">Cape Town</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-outline">Cancel</button>
+          <button class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Security Tab (hidden by default) -->
+      <div class="tab-content" id="security-tab">
+        <!-- Security content would go here -->
+      </div>
+
+      <!-- Preferences Tab (hidden by default) -->
+      <div class="tab-content" id="preferences-tab">
+        <!-- Preferences content would go here -->
       </div>
     </div>
 
-    <!-- Posts Feed -->
-    <div class="posts-feed">
-     
-    </div>
-  </main>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="scripts/dashboard.js" type="module"></script>
     <!-- <script src="scripts/app.js" type="module"></script> -->
     <script src="backend/backend.js" type="module"></script>
-</body>
+  </body>
 </html>
