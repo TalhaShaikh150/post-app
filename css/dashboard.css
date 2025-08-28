@@ -45,6 +45,8 @@
    --gradient-end: #ff6a00;
  }
 
+
+
  * {
    margin: 0;
    padding: 0;
@@ -53,7 +55,7 @@
 
  body {
    font-family: "Poppins", sans-serif;
-   background: var(--light);
+   /* background: var(--light); */
    color: var(--dark);
    display: flex;
    min-height: 100vh;
@@ -245,12 +247,13 @@
    color: rgba(255, 255, 255, 0.7);
  }
 
- /* .logout-btn {
+.logout-btn {
    background:#0a0a0a;
    border: none;
    color: rgba(255, 255, 255, 0.7);
    cursor: pointer;
-   font-size: 1.6rem;
+   font-size: 1.2rem;
+   width: 80%;
    transition: var(--transition);
    padding: 0.5rem;
    border-radius: 12px;
@@ -263,81 +266,7 @@
    color: white;
    background-color: rgba(255, 255, 255, 0.1);
    transform: translateY(-2px);
- } */
-/* From Uiverse.io by kennyotsu-monochromia */ 
-.Btn {
-  --black: #000000;
-  --ch-black: #141414;
-  --eer-black: #1b1b1b;
-  --night-rider: #2e2e2e;
-  --white: #ffffff;
-  --af-white: #f3f3f3;
-  --ch-white: #e1e1e1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 87px;
-  height: 50px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: var(--night-rider);
-}
-
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: .3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 20px;
-}
-
-.sign svg path {
-  fill: var(--af-white);
-}
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: var(--af-white);
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: .3s;
-}
-/* hover effect on button width */
-.Btn:hover {
-  width: 125px;
-  border-radius: 5px;
-  transition-duration: .3s;
-}
-
-.Btn:hover .sign {
-  width: 30%;
-  transition-duration: .3s;
-  padding-left: 20px;
-}
-/* hover effect button's text */
-.Btn:hover .text {
-  opacity: 1;
-  width: 70%;
-  transition-duration: .3s;
-  padding-right: 10px;
-}
-/* button click effect*/
-.Btn:active {
-  transform: translate(2px ,2px);
-}
+ } 
  /* Main Content */
  .main-content {
    flex: 1;
@@ -989,3 +918,75 @@
      gap: 2rem;
    }
  }
+
+  
+        .logout-btn {
+            background: rgba(10, 10, 10, 0.9);
+            border: none;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 50%;
+            transition: all 0.3s ease;
+            padding: 1.2rem 1rem;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logout-btn:hover {
+            color: white;
+            background: rgba(255, 0, 0, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 0, 0, 0.4);
+        }
+        
+        .logout-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .logout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .logout-btn:hover::before {
+            transform: translateX(100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .logout-btn:hover .icon {
+            transform: rotate(180deg);
+        }
+        
+        .confirmation-text {
+            margin-top: 1.5rem;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            height: 0;
+        }
+        
+        .logout-btn:hover + .confirmation-text {
+            opacity: 1;
+            transform: translateY(0);
+            height: auto;
+        }
